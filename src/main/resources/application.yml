@@ -1,0 +1,45 @@
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          facebook:
+            clientId: 717438715771254
+            clientSecret: 0f301954f6aca47ebc36977027f8a89b
+            redirectUri: "{baseUrl}/oauth2/callback/{registrationId}" # Note that facebook now mandates the use of https redirect URIs, so make sure your app supports https in production
+            scope:
+              - email
+              - public_profile
+          provider:
+            facebook:
+              authorizationUri: https://www.facebook.com/v3.0/dialog/oauth
+              tokenUri: https://graph.facebook.com/v3.0/oauth/access_token
+              userInfoUri: https://graph.facebook.com/v3.0/me?fields=id,first_name,middle_name,last_name,name,email,verified,is_verified,picture.width(250).height(250)
+app:
+  auth:
+    tokenSecret: ieX6:4M1fq2.vNT
+    tokenExpirationMsec: 864000000
+  oauth2:
+    authorizedRedirectUris:
+#      - http://localhost:8080/api/login
+      - http://localhost:30083/api/login
+#      - http://localhost:8080/
+      - http://localhost:30083/
+#      - http://localhost:5000/fb-login
+      - http://localhost:30082/fb-login
+urlfailredirect:
+  allUri: http://localhost:30082/
+  scheme: http
+  uri:
+#      -localhost:5000
+      -localhost:30082
+
+  path: /login
+google :
+  service_account_email : kiteservice@kitebook-1598257526776.iam.gserviceaccount.com
+  application_name : Kitebook
+  folder_id : 1LjAe49A6ub28ddTzRBFFZLSmlNPMv3uF
+  service_account_key : kitebook-1598257526776-6495b6439aa8.p12
+
+urlCorrectlyRedirect:
+  allUri: http://localhost:30082/fb-login/
